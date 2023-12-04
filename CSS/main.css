@@ -1,5 +1,5 @@
 body {
-    background: url('/images/room.png');
+    background: url('images/room.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -20,7 +20,7 @@ body {
 
 .img-left { 
     height:100%;
-    background: url('/images/banner.png');
+    background: url('images/banner.png');
     background-position: center;
     background-size: cover;
     height:400px;
@@ -33,7 +33,7 @@ padding:10px
 
 .left {
     border-right:1px solid rgb(179, 169, 169);
-    background:#fbf6f6 url('/images/grid.png');
+    background:#fbf6f6 url('images/grid.png');
     padding:20px;
     padding-right:30px;
     border-radius: 5px 0px 0px 5px;
@@ -41,7 +41,7 @@ padding:10px
 
 .right {
     border-left:1px solid rgb(179, 169, 169);
-    background:#fbf6f6 url('/images/grid.png');
+    background:#fbf6f6 url('images/grid.png');
     padding:20px;
     padding-left:30px;
     border-radius: 0px 5px 5px 0px; 
