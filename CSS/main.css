@@ -1,0 +1,129 @@
+body {
+    background: url('/images/room.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    padding:1rem;
+    }
+
+.content {
+    width:calc(500px + 20%);
+    margin: auto;
+    font-family: 'Gaegu';
+}
+
+.book {
+    z-index: 5;
+    position: relative;
+}
+
+.img-left { 
+    height:100%;
+    background: url('/images/banner.png');
+    background-position: center;
+    background-size: cover;
+    height:400px;
+}
+
+.card {
+padding:10px
+}
+
+
+.left {
+    border-right:1px solid rgb(179, 169, 169);
+    background:#fbf6f6 url('/images/grid.png');
+    padding:20px;
+    padding-right:30px;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.right {
+    border-left:1px solid rgb(179, 169, 169);
+    background:#fbf6f6 url('/images/grid.png');
+    padding:20px;
+    padding-left:30px;
+    border-radius: 0px 5px 5px 0px; 
+}
+
+.text-box {height:400px; overflow-y: auto;}
+
+li a {background-color: rgba(229, 255, 0, 0.418); text-decoration: none;}
+
+
+.hl {background-color: rgba(229, 255, 0, 0.418);}
+
+  .navbars {
+    color:#fff;
+    margin-bottom:-12px;
+    z-index: -500;
+    font-size: 90%;
+    width: fit-content;
+  }
+
+  .navbars a {
+    color:rgb(255, 255, 255);
+    text-decoration: none;
+    background-color:rgb(43, 39, 39);
+    width: fit-content;
+    padding:5px 10px;
+    padding-bottom:15px;
+    margin-right: 10px;
+    border-radius: 5px 5px 0px 0px;
+    transition: all ease-in-out 0.3s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .navbars a:hover {
+    transform: translateY(-5px);
+    color:#fff;
+  }
+
+  .spiral {
+    background-image:url('https://f2.toyhou.se/file/f2-toyhou-se/images/38904935_hfXuIWFEPdJTN2h.png?1629709936');
+    background-repeat:repeat-y;
+    background-size:contain;
+    position:relative;
+    top:1%;
+    margin-inline:-15px;
+    left:0;
+    right:0;
+    width:30px;
+    height:430px;
+  }
+
+  .games {
+    height:100px;
+    background-color:#222;
+    color:#fff;
+    text-shadow: -1px 0px 0px #000, 1px 0px 0px #000, 0px 1px 0px #000, 0px -1px 0px #000, 0px 0px 5px #000;
+    padding:10px 15px;
+    margin-bottom: 10px;
+    border: 1px solid #000;
+    transition: all ease-in-out 0.3s;
+  }
+
+  .games:hover {
+    transform: translateY(-5px);
+    background-blend-mode: luminosity;
+  }
+
+ .gamez a {text-decoration: none;}
+
+ .button a {
+    color:rgb(255, 255, 255);
+    text-decoration: none;
+    background-color:rgb(43, 39, 39);
+    border:0px;
+    border-radius: 5px;
+    padding:5px 10px;
+    width: fit-content;
+    height: fit-content;
+    transition: all ease-in-out 0.5s;
+ }
+
+ .button a:hover {transform: translateX(-5px);color:#fff; box-shadow: 3px 3px 0px #ffb6b6;}
+
+ .funghi {width:50px; float: right; position: absolute; right:-1rem; bottom:-1rem}
