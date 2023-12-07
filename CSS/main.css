@@ -1,15 +1,24 @@
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     background: url('/images/room.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
     padding:1rem;
+    overflow: hidden;
     }
 
 .content {
-    width:calc(500px + 20%);
-    margin: auto;
+    width:800px;
+    justify-content: center;
+    align-items: center;
+    rotate: -1deg;
+    position: relative;
+    margin-inline: auto;
     font-family: 'Gaegu';
 }
 
@@ -78,6 +87,7 @@ li a {background-color: rgba(229, 255, 0, 0.418); text-decoration: none;}
 
   .navbars a:hover {
     transform: translateY(-5px);
+    background-color: rgb(92, 109, 167);
     color:#fff;
   }
 
@@ -113,17 +123,126 @@ li a {background-color: rgba(229, 255, 0, 0.418); text-decoration: none;}
  .gamez a {text-decoration: none;}
 
  .button a {
-    color:rgb(255, 255, 255);
-    text-decoration: none;
-    background-color:rgb(43, 39, 39);
-    border:0px;
-    border-radius: 5px;
-    padding:5px 10px;
-    width: fit-content;
-    height: fit-content;
-    transition: all ease-in-out 0.5s;
- }
+  color:rgb(255, 255, 255);
+  text-decoration: none;
+  background-color:rgb(43, 39, 39);
+  border:0px;
+  border-radius: 5px;
+  padding:5px 10px;
+  width: fit-content;
+  height: fit-content;
+  transition: all ease-in-out 0.5s;
+}
 
  .button a:hover {transform: translateX(-5px);color:#fff; box-shadow: 3px 3px 0px #ffb6b6;}
 
  .funghi {width:50px; float: right; position: absolute; right:-1rem; bottom:-1rem}
+
+ .tab .tablinks {
+    border-width:0px 0px 0px 5px;
+    border-color:#ffd991;
+    background-color:rgba(229, 255, 0, 0.418);
+    padding-inline:10px;
+    padding-block: 5px;
+    width:100%;
+    margin-top:5px;
+    transition: all ease-in-out 0.3s;
+ }
+
+ .tab .tablinks:hover {transform: translateX(5px);background-color:rgba(255, 208, 0, 0.418);}
+ .tab .tablinks.active {background-color:rgba(255, 208, 0, 0.418);}
+ .tab .tablinks.dead {background-color:rgba(168, 168, 168, 0.418);}
+
+ /* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+  }
+  
+  /* Style the buttons that are used to open the tab content */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background-color: #ccc;
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    animation: fadeEffect 1s; 
+  }
+
+  .tabcontent.active {
+    display:contents
+  }
+
+  @keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  .CD {
+    z-index:-1;
+    position: absolute;
+    height: 60vh;
+    top:3vh;
+    right: -30vh;
+    animation: 5s spin linear infinite;
+  }
+
+  @keyframes spin {
+    100% {transform: rotate(360deg);}
+  }
+
+  .song {background-color: rgba(229, 255, 0, 0.418); 
+    padding-inline:15px; 
+    color:rgb(230, 122, 60); 
+    width:50%;
+     margin: auto;}
+
+    .cover {
+      width:200px; 
+      filter: drop-shadow(5px 5px 0px rgba(67, 159, 182, 0.388)); 
+      transform: rotate(-1deg);
+       margin-bottom:10px;
+       transition: all ease-in-out 0.3s;
+    }
+
+    .cover:hover {
+      transform: rotate(5deg);
+    }
+
+    .bookmark {
+      clip-path: polygon(100% 0%, 100% 53%, 100% 100%, 0 100%, 30% 51%, 0 0);
+      background-color: rgb(244, 255, 141);
+      width:90px;
+      height:40px;
+      text-align: center;
+      padding:5px;
+      padding-left: 25px;
+      position: absolute;
+      right: -1rem;
+      bottom: 2rem;
+      text-decoration: none;
+      transition: all ease-in-out 0.3s;
+    }
+
+    .bookmark:hover {
+      transform: translateX(5px);
+    }
