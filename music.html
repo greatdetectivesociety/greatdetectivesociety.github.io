@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="a touch detective fansite!"/>
+        <meta name="author" content=""/>
+		<meta name="Keywords"	content="touch detective, fansite, touch detective fansite, rina ozawa, nameko"/>
+        <title>JUKEBOX</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+		<link href="CSS/main.css" rel="stylesheet"/>
+        <link href="CSS/bootstrap.css" rel="stylesheet"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Gaegu" rel="stylesheet">
+
+        <script src="https://kit.fontawesome.com/844f3a93f0.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <style>
+        hr{border-top:1px solid;}
+
+        i {cursor: pointer;}
+
+    </style>
+    </head>
+<body>
+
+<div class="content">
+    <div class="navbars d-flex">
+        <a href="index.html">home</a>
+        <a href="characters.html">suspects</a>
+        <a href="info.html">files</a>
+        <a href="media.html">clues and pictures</a>
+        <a href="links.html">links</a>
+    </div>
+<div class="d-flex book">
+    <div class="col order-1">
+    <div class="left tab" style="height:450px; overflow-y: auto;">
+work in progress <i class="fas fa-spinner fa-spin"></i>
+<button class="tablinks" onclick="openCity(event, 'one')">Go! Go! Mackenzie! </button>
+<button class="tablinks" onclick="openCity(event, 'two')">Gumshoe Blues </button>
+<button class="tablinks dead" onclick="openCity(event, 'three')">March of the Trumpets</button>
+<button class="tablinks dead" onclick="openCity(event, 'four')">Beatrice's Waltz </button>
+<button class="tablinks dead" onclick="openCity(event, 'five')">Everyday </button>
+<button class="tablinks dead" onclick="openCity(event, 'six')">Strolling Along </button>
+<button class="tablinks dead" onclick="openCity(event, 'seven')">Intuition</button>
+<button class="tablinks dead" onclick="openCity(event, 'eight')">Goodbye Friend</button>
+<button class="tablinks dead" onclick="openCity(event, 'nine')">Dream a Sweet Dream </button>
+<button class="tablinks dead" onclick="openCity(event, 'ten')">Ranting and Raving</button>
+<button class="tablinks dead" onclick="openCity(event, 'eleven')">Cosmos of Fear</button>
+<button class="tablinks dead" onclick="openCity(event, 'twelve')">Dance! Detective! </button>
+<button class="tablinks dead" onclick="openCity(event, 'thirteen')">Hey, Lugol!</button>
+<button class="tablinks dead" onclick="openCity(event, 'fourteen')">Scenes from a Postcard </button>
+<button class="tablinks dead" onclick="openCity(event, 'fifteen')">Under the Big Top</button>
+<button class="tablinks dead" onclick="openCity(event, 'sixteen')">Case Closed</button>
+<button class="tablinks dead" onclick="openCity(event, 'seventeen')">Touch Detective </button>
+<button class="tablinks dead" onclick="openCity(event, 'eighteen')">Dream Exploration</button>
+<button class="tablinks dead" onclick="openCity(event, 'nineteen')">Bonus (1)</button>
+<button class="tablinks dead" onclick="openCity(event, 'twenty')">Bonus (2)</button>
+    </div>
+    </div>
+
+    <div class="col right order-3 text-center" style="height:450px; overflow-y: auto;">
+       
+        <div class="d-flex mt-3">
+        <div class="col-auto">
+            <i><img src="/images/CD.png" class="CD"></i>
+        </div>
+        <!---->
+        <div class="col">
+            <div id="one" class="tabcontent active">
+                <img src="/album/temp.png" class="cover">
+                <p>Go! Go! Mackenzie</p>
+
+                TD 1
+                <div class="d-flex song mb-2">
+                    <div class="col my-auto"><hr></div>
+                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('op1').play()"><i class="fas fa-forward fa-flip-horizontal"></i> <i class="far fa-circle-play"></i></div>
+                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('op1').pause()"><i class="far fa-circle-pause"></i> <i class="fas fa-forward"></i> </div>
+                    <div class="col my-auto"><hr></div>
+                </div>
+
+                TD 2 1/2
+                <div class="d-flex song mb-2">
+                    <div class="col my-auto"><hr></div>
+                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('op2').play()"><i class="fas fa-forward fa-flip-horizontal"></i> <i class="far fa-circle-play"></i></div>
+                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('op2').pause()"><i class="far fa-circle-pause"></i> <i class="fas fa-forward"></i> </div>
+                    <div class="col my-auto"><hr></div>
+                </div>
+
+                TD 3
+                <div class="d-flex song">
+                    <div class="col my-auto"><hr></div>
+                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('op3').play()"><i class="fas fa-forward fa-flip-horizontal"></i> <i class="far fa-circle-play"></i></div>
+                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('op3').pause()"><i class="far fa-circle-pause"></i> <i class="fas fa-forward"></i> </div>
+                    <div class="col my-auto"><hr></div>
+                </div>
+            </div>
+            <div id="two" class="tabcontent">
+                <img src="/album/temp.png" class="cover">
+                <p>Gumshoe Blues (Office)</p>
+
+                TD 1
+                <div class="d-flex song mb-2">
+                    <div class="col my-auto"><hr></div>
+                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('gb1').play()"><i class="fas fa-forward fa-flip-horizontal"></i> <i class="far fa-circle-play"></i></div>
+                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('gb1').pause()"><i class="far fa-circle-pause"></i> <i class="fas fa-forward"></i> </div>
+                    <div class="col my-auto"><hr></div>
+                </div>
+
+                TD 2 1/2
+                <div class="d-flex song mb-2">
+                    <div class="col my-auto"><hr></div>
+                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('gb2').play()"><i class="fas fa-forward fa-flip-horizontal"></i> <i class="far fa-circle-play"></i></div>
+                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('gb2').pause()"><i class="far fa-circle-pause"></i> <i class="fas fa-forward"></i> </div>
+                    <div class="col my-auto"><hr></div>
+                </div>
+
+                TD 3
+                <div class="d-flex song">
+                    <div class="col my-auto"><hr></div>
+                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('gb3').play()"><i class="fas fa-forward fa-flip-horizontal"></i> <i class="far fa-circle-play"></i></div>
+                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('gb3').pause()"><i class="far fa-circle-pause"></i> <i class="fas fa-forward"></i> </div>
+                    <div class="col my-auto"><hr></div>
+                </div>
+            </div>
+        </div>
+        <!---->
+    </div>
+    </div>
+
+    <div class="col-auto order-2">
+        <div class="d-md-flex d-none spiral">
+        </div>
+    </div>
+
+</div>
+</div>
+<!---->
+<script>
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    </script>
+    <!---->
+
+    <audio id="op1" src="/audios/Opening Theme _Go! Go! Mackenzie!_ - Touch Detective.mp3" preload="auto"></audio>
+    <audio id="op2" src="/audios/Opening Theme _Go! Go! Mackenzie!_ - Touch Detective 2 12.mp3" preload="auto"></audio>
+    <audio id="op3" src="/audios/Opening Theme _Go! Go! Mackenzie!_ - Touch Detective.mp3" preload="auto"></audio>
+
+    <audio id="gb1" src="/audios/Office _Gumshoe Blues_ - Touch Detective.mp3" preload="auto"></audio>
+    <audio id="gb2" src="/audios/Office _Gumshoe Blues_ - Touch Detective 2 12.mp3" preload="auto"></audio>
+    <audio id="gb3" src="/audios/Office  _Gumshoe Blues_ - Touch Detective 3 Rising_ Do Funghi Dream Of Bananas_.mp3" preload="auto"></audio>
+</body>
+</html>
