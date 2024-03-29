@@ -156,8 +156,8 @@ li a {background-color: rgba(229, 255, 0, 0.418); text-decoration: none;}
  /* Style the tab */
 .tab {
     overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    border: 0;
+    background-color: transparent;
   }
   
   /* Style the buttons that are used to open the tab content */
@@ -189,7 +189,7 @@ li a {background-color: rgba(229, 255, 0, 0.418); text-decoration: none;}
   }
 
   .tabcontent.active {
-    display:contents
+    display: block
   }
 
   @keyframes fadeEffect {
@@ -246,3 +246,47 @@ li a {background-color: rgba(229, 255, 0, 0.418); text-decoration: none;}
     .bookmark:hover {
       transform: translateX(5px);
     }
+
+    /**/
+
+    .dropbtn {
+      filter: drop-shadow(5px 5px 0px #ffbb00);
+     margin: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: all ease-in-out 0.2s;
+    }
+    
+    .dropbtn:hover, .dropbtn:focus {
+      filter: drop-shadow(0px 0px 0px #ffbb00);
+      background: none;
+    }
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 150px;
+      overflow: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    
+    .dropdown-content a {
+      color: black;
+      padding: 10px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ffd991;
+      color: #222;
+    }
+    
+    .show {display: block;}
