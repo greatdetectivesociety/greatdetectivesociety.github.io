@@ -31,45 +31,54 @@
 </div>
 <div class="d-flex book">
     <div class="col order-1">
-    <div class="left">
-        <div id="carousel" class="carousel slide" data-ride="carousel" style="width:320px">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img class="d-block w-100" src="/images/what.png">
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="/images/tate.png">
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="/images/trio.png">
-              </div>
-            </div>
-            
-          </div>
-    </div>
-    </div>
+        <div class="left">
+        <div class="img-left" style="background-image: url(/images/DD.png);"></div>
+        </div>
+        </div>
 
     <div class="col right order-3">
-        <div class="text-box" style="height:450px">
-            <span class="hl"><a href="music.html">Listen to the OST on the Jukebox !</a></span>
-            <hr>
-            Concept, Character, and Official Artworks
-            <li><a href="https://drive.google.com/drive/folders/126rU5uhTrNnFSwFMoAsWueF5Ov9x2gg-?usp=drive_link">Touch Detective Concept and Official Illustrations</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1_zAAUd8BU82LysEXezT87dkZNYSNeY4m">Nameko Rhythm Game Files</a></li>
-            <hr>
-            Official Websites
-            <li><a href="http://www.success-corp.co.jp/software/ds/osawari_tantei/ ">DS Site</a></li>
-            <li><a href="https://rinameko.success-corp.co.jp/">Coloring Pages and Web Games</a></li>
-            <li><a href="https://rinameko.success-corp.co.jp/osawari123">Characters and Guides [unfinished]</a></li>
-            <li><a href="https://y.honkakuha.success-games.net/game/su-39-namekopop/">Nameko Web Game</a></li>
-            <hr>
-            About IOS & Android
-            <li><a href="https://beeworksgames.com/~touchdetective/">Touch Detective</a></li>
-            <li><a href="https://beeworksgames.com/~touchdetective2/ ">Touch Detective 2 1/2</a></li>
-            <hr>
-            Trailers and Series
-            <li><a href="https://www.bilibili.com/video/BV1px411e7oT/">Nameko/Funghi Family TV Show</a></li>
-            <li><a href="https://youtu.be/t2zAGxKQMUI?si=ylVPsE-LGMtSQw9y">Touch Detective 3 + The Complete Case Files</a></li>
+        <div class="text-box" style="overflow: visible">
+
+            <div class="dropdown">
+                <a href='#' class="nav-link">
+                    <img src="/images/CA_btn.png" class="dropbtn" style="width:130px">
+                </a>
+                <div class="dropdown-content">
+                  <a href="https://drive.google.com/drive/folders/1_9CAY-22w-ELd0uYzG3zkov9Ljfrnqft?usp=drive_link" class="nav-link">Concept and Official Illustrations</a>
+                  <a href="https://drive.google.com/drive/folders/1_zAAUd8BU82LysEXezT87dkZNYSNeY4m?usp=drive_link" class="nav-link">Nameko Rhythm Game Assets</a>
+                  <a href="https://drive.google.com/drive/folders/1r4oJqAixaCJR_6EpZl5k3bBdDzPiH9SH?usp=sharing" class="nav-link">Detective Diary</a>
+                </div>
+              </div>
+              
+              <div class="dropdown">
+                <a href='#' class="nav-link">
+                    <img src="/images/WEB_btn.png" class="dropbtn" style="width:150px">
+                </a>
+                <div class="dropdown-content ">
+                    <a href="https://rinameko.success-corp.co.jp/osawari123">Characters & Guides</a>
+                    <a href="https://rinameko.success-corp.co.jp/">Nintendo Switch</a>
+                    <a href="https://y.honkakuha.success-games.net/game/su-39-namekopop/">Nameko Web Game</a>
+                    <a href="https://beeworksgames.com/~touchdetective/">Mobile Release [TD]</a>
+                    <a href="https://beeworksgames.com/~touchdetective2/">Mobile Release [TD 2 1/2]</a>
+
+                </div>
+              </div>
+
+              <div class="dropdown">
+                <a href='#' class="nav-link">
+                    <img src="/images/TV_btn.png" class="dropbtn" style="width:150px">
+                </a>
+                <div class="dropdown-content">
+                  <a href="https://www.bilibili.com/video/BV1px411e7oT/" class="nav-link">Nameko/Funghi Family TV Show</a>
+                  <a href="https://www.youtube.com/watch?v=t2zAGxKQMUI" class="nav-link">Touch Detective 3: Trailer</a>
+                </div>
+              </div>
+
+              <a href='music.html'>
+                <img src="/images/JB_btn.png" style="width:150px;" class="dropbtn">
+            </a>
+
+
         </div>
     </div>
 
@@ -81,6 +90,24 @@
 </div>
 </div>
 
+<script>
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    window.addEventListener('load', function() {
+  // wait until the page loads before working with HTML elements
+  document.addEventListener('click', function(event) {
+    //click listener on the document
+    document.querySelectorAll('.dropdown-content').forEach(function(el) {
+      if (el !== event.target) el.classList.remove('show')
+      // close any showing dropdown that isn't the one just clicked
+    });
+    if (event.target.matches('.dropbtn')) {
+      event.target.closest('.dropdown').querySelector('.dropdown-content').classList.toggle('show')
+    }
+    // if this is a dropdown button being clicked, toggle the show class
+  })
+})
 
+    </script>
 </body>
 </html>
