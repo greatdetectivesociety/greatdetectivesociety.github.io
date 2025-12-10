@@ -10,7 +10,7 @@
         <!-- Favicon-->
         <link href="https://rinameko.success-corp.co.jp/wp-content/themes/osawari_v1_0_1/img/favicon.ico" rel="shortcut icon">
         <!-- Core theme CSS (includes Bootstrap)-->
-		<link href="CSS/main.css" rel="stylesheet"/>
+
         <link href="CSS/bootstrap.css" rel="stylesheet"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css2?family=Gaegu" rel="stylesheet">
@@ -21,211 +21,612 @@
 <script src="https://kit.fontawesome.com/844f3a93f0.js" crossorigin="anonymous"></script>    
 </head>
 <style>
-  .filterDiv {
-  float: left;
-  text-align: center;
-  margin: 2px;
+/* >> reset */
+html, body, div, span, h1, p, a, ol, li, audio {
+	border: 0;
+	font: inherit;
+	font-size: 100%;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+    font-family: 'Gaegu';
+    color: #636468;
+}
+ol {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+ol li {
+	margin: 0;
+	list-style: decimal outside;
+}
+* {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;
+}
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+body {
+	padding: 5px 0;
+	background: #111 none;
+	font: 20px/24px 'Helvetica', 'Arial', sans-serif;
+	color: #eee;
+}
+a, a:focus, a:active, a:hover, a:visited {
+	text-decoration: none;
+}
+a[href], a[href]:active, a[href]:visited {
+	 color:inherit;
+	outline: 0 none;
+}
+a[href]:hover, a[href]:focus {
+	 color:inherit;
+}
+/* << reset */
+
+/* page style */
+.page {
+	position: relative;
+	margin: 0 auto;
+	width: 70%;
+	min-width: 300px;
+	max-width: 700px;
+}
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Audio Player */
+.player-wrap {
+    position: sticky;
+    top:0%; 
+	margin: 0 0 1em;
+	padding: 0;
+    background:#e9f0e2 url(images/jb_bg.png) center/cover no-repeat;
+    color:#ffffff;
+}
+.player-wrap.enabled {
+	padding-bottom: 2em;
+}
+.player-wrap .button {
+	float: left;
+	display: none;
+	width: 8em;
+	line-height: 5em;
+	text-align: center;
+	border-radius: 5%;
+}
+.player-wrap .button:hover {
+  background-color: #444;
+	cursor: pointer;
+}
+.player-wrap.enabled .button {
+	display: block;
+}
+.player-wrap .info {
+    margin: auto;
+    text-align: center;
+    color:#3b3838;
+    padding: 2rem;
+}
+
+.player-wrap h1 {
+    margin-top: 2em;
+    font-size: 1.7rem;
+}
+
+
+.player-wrap .action {
+	font-style: italic;
+}
+.player-wrap .player {
+	position: absolute;
   display: none;
+	left: 0;
+	bottom: 0;
+	padding: 0 1em 0 6em;
+	width: 100%;
+	height: 1em;
+	background-color: #C5D5EC;
+	font-size: 2em;
+	box-sizing: border-box;
+}
+.player-wrap.enabled .player {
+	display: block; 
+}
+.player-wrap .player svg {
+	margin: .25em;
+  margin-bottom: 1rem;
+	width: .5em;
+	height: .5em;
+	fill: currentColor;
+}
+.player-wrap .player div {
+	display: block;
+	height: 1em;
+}
+.player-wrap audio,
+.player-wrap .player .pause {
+	display: none;
+}
+.player-wrap .playpause, .player-wrap .timer,
+.player-wrap .prev, .player-wrap .next {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	display: block;
+	height: 1em;
+	line-height: 1em;
+	vertical-align: top;
+	text-align: center;
+}
+.player-wrap .playpause,
+.player-wrap .prev, .player-wrap .next {
+	width: 1em;
+	cursor: pointer;
+}
+.player-wrap .playpause {
+	left: 1em;
+}
+.player-wrap .next {
+	left: auto;
+	right: 0;
+}
+.player-wrap .playpause:hover,
+.player-wrap .prev:hover, .player-wrap .next:hover {
+	background-color: #444;
+}
+.player-wrap .playpause, .player-wrap .play, .player-wrap .pause,
+.player-wrap .prev::-moz-focus-inner,
+.player-wrap .next::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+.player-wrap .timer {
+	left: 2em;
+	width: 4em;
+}
+.player-wrap .timer div {
+	display: inline-block;
+	height: 100%;
+	vertical-align: top;
+	font-size: .45em;
+}
+.player-wrap .seek {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+}
+.playlist-wrap {
+    overflow-y: auto;
+    color:#0f0f0f 
 }
 
-.show {
-  display: block;
+.playlist-wrap ol {
+    	background-color: #dee7e4;
 }
 
-.btn {
-  border: none;
-  outline: none;
-  padding-inline: 8px;
-  margin: 2px;
-  font-size: 11px;
-  color:#fff;
-  background-color: #222;
-  border-radius: 100;
-  cursor: pointer;
+.playlist-wrap li {
+	margin: 0 0 0 3em;
+	padding: .25em 0 .25em .5em;
+	list-style: decimal outside;
+}
+.playlist-wrap li.sel {
+    list-style-image: url(/images/favicon.ico);
+	background-color: #FFEC90;
+}
+.playlist-wrap li:hover {
+	background-color: #FFEC90;
 }
 
-.btn:hover {
-  background-color: #666;
-  color:#fff
+/* >> input[type=range] class: seek */
+input.seek[type=range] {
+	box-sizing: border-box;
+	background-color: transparent;
+	vertical-align: top;
+	font-size: 1em;
+	-webkit-appearance: none;
+}
+input.seek[type=range]:focus {
+	outline: none;
+}
+input.seek[type=range]::-webkit-slider-runnable-track {
+	box-sizing: border-box;
+	width: 98%;
+	height: .17em;
+	background-color: #eee;
+	cursor: pointer;
+	border-radius: .1em;
+	transition: all .2s ease;
+}
+input.seek[type=range]::-webkit-slider-thumb {
+	box-sizing: border-box;
+	width: .17em;
+	height: .7em;
+	margin-top: -.27em;
+	border-radius: .1em;
+	background-color: #eee;
+	cursor: pointer;
+	-webkit-appearance: none;
+}
+input.seek[type=range]:focus::-webkit-slider-runnable-track {
+	background-color: #eee;
+}
+input.seek[type=range]::-moz-range-track {
+	box-sizing: border-box;
+	border: 0 solid #eee;
+	width: 98%;
+	height: .17em;
+	background-color: #eee;
+	cursor: pointer;
+	border-radius: .1em;
+	transition: all .2s ease;
+}
+input.seek[type=range]::-moz-range-thumb {
+	box-sizing: border-box;
+	border: 0 solid #eee;
+	width: .17em;
+	height: .7em;
+	background-color: #eee;
+	cursor: pointer;
+	border-radius: .1em;
+}
+input.seek[type=range]::-ms-track {
+	box-sizing: border-box;
+	border: 0 none;
+	width: 98%;
+	height: .17em;
+	background-color: transparent;
+	color: transparent;
+	cursor: pointer;
+	transition: all .2s ease;
+}
+input.seek[type=range]::-ms-fill-lower {
+	background-color: #eee;
+	border-radius: .1em;
+}
+input.seek[type=range]::-ms-fill-upper {
+	background-color: #eee;
+	border-radius: .1em;
+}
+input.seek[type=range]::-ms-thumb {
+	margin-top: -.01em;
+	box-sizing: border-box;
+	width: .17em;
+	height: .7em;
+	background-color: #eee;
+	cursor: pointer;
+	border-radius: .1em;
+}
+input.seek[type=range]:focus::-ms-fill-lower {
+	background-color: #eee;
+}
+input.seek[type=range]:focus::-ms-fill-upper {
+	background-color: #eee;
 }
 
-.btn.active {
-  background-color: #222;
-  color: white;
+li a {
+  background-color: transparent;
+  text-decoration: none;
+} 
+
+.title { 
+  padding-top:1rem;
+
 }
 </style>
-    <body style="background: #f1f1f1 url(/images/grid.png);">
+    <body style="background: #f1f1f1 url(/images/grid.png); background-size: 2em; background-repeat: repeat;">
 
-      <div class="content" style="transform: rotate(1deg);">
-        <div class="d-flex">
+      <div class="content">
+        <div class="page">
+	<div class="player-wrap">
+	<a href="/media.html"><img src="/images/close.png" style="width:2.5em; position: absolute; top:0; right:0"></a>
+    <div class="info">
+                <div class="button"><img src="/album/temp.png" style="width:100%;"></div>
+      <h1>Touch Detective OST</h1>
+      <p class="action">&nbsp;</p>
+      <marquee class="title ellipsis"></marquee>
+    </div>
+		<div class="player">
+			<audio preload></audio>
+			<div class="playpause">
+				<div class="play"><svg viewBox="0 0 14 14"><path d="M0,0 L0,14 L11,7 L0,0 Z"/></svg></div>
+				<div class="pause"><svg viewBox="0 0 14 14"><path d="M0,14 L4,14 L4,0 L0,0 L0,14 L0,14 Z M8,0 L8,14 L12,14 L12,0 L8,0 L8,0 Z"/></svg></div>
+			</div>
+			<div class="timer">
+				<div class="current">0:00:00</div>
+				<div>/</div>
+				<div class="duration">0:00:00</div>
+			</div>
+			<div><input type="range" min="0" max="100" step=".1" value="0" class="seek"></div>
+			<div class="prev"><svg viewBox="0 0 12 12"><path d="M3.5,6 L12,12 L12,0 L3.5,6 Z M0,0 L0,12 L2,12 L2,0 L0,0 L0,0 Z"/></svg></div>
+			<div class="next"><svg viewBox="0 0 12 12"><path d="M0,12 L8.5,6 L0,0 L0,12 L0,12 Z M10,0 L10,12 L12,12 L12,0 L10,0 L10,0 Z"/></svg></div>
+		</div>
+	</div>
+	<div class="playlist-wrap">
+[Touch Detective 1]
+		<ol id="td1">
+      <!--TD 1-->
+			<li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Opening%20Theme%20_Go!%20Go!%20Mackenzie!_%20-%20Touch%20Detective.mp3">(Opening Theme) Go! Go! Mackenzie!</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Office%20_Gumshoe%20Blues_%20-%20Touch%20Detective.mp3">(Office) Gumshoe Blues</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Town%20Map%20'March%20of%20the%20Trumpets'%20-%20Touch%20Detective%20(128kbit_AAC).m4a">(Town Map) March of the Trumpets</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Condominium%20'Beatrice's%20Waltz'%20-%20Touch%20Detective%20(128kbit_AAC).m4a">(Condominium) Beatrice's Waltz</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Park%20'Everyday'%20-%20Touch%20Detective%20(128kbit_AAC).m4a">(Park) Everyday</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Suspense%20'Intuition'%20-%20Touch%20Detective%20(128kbit_AAC).m4a">(Suspense) Intuition</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Shopping%20Plaza%20'Strolling%20Along'%20-%20Touch%20Detective%20(128kbit_AAC).m4a">(Shopping Plaza) Strolling Along</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Epilogue%20'Goodbye%2C%20Friend'%20-%20Touch%20Detective%20(128kbit_AAC).m4a">(Epilogue) Goodbye, Friend</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Penelope's%20Theme%20'Dream%20a%20Sweet%20Dream'%20-%20Touch%20Detective%20(128kbit_AAC).m4a">(Penelope's Theme) Dream a Sweet Dream</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Chloe's%20Theme%20'Ranting%20and%20Raving'%20-%20Touch%20Detective%20(128kbit_AAC).m4a">(Chloe's Theme) Ranting and Raving</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Planetarium%20'Cosmos%20of%20Fear'%20-%20Touch%20Detective%20(128kbit_AAC).m4a">(Planetarium) Cosmos of Fear</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Action%20'Dance!%20Detective!'%20-%20Touch%20Detective%20(128kbit_AAC).m4a">(Action) Dance! Detective! </a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Organ%20Grinder%20'Hey%2C%20Lugol!'%20-%20Touch%20Detective%20(128kbit_AAC).m4a">(Organ Grinder) Hey, Lugol!</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Dramatic%20'Scenes%20from%20a%20Postcard'%20-%20Touch%20Detective%20(128kbit_AAC).m4a">(Dramatic) Scenes from a Postcard</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Circus%20'Under%20the%20Big%20Top'%20-%20Touch%20Detective%20(128kbit_AAC).m4a">(Circus) Under the Big Top</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Suspense%202%20'Case%20Closed'%20-%20Touch%20Detective%20(128kbit_AAC).m4a">(Suspense 2) Case Closed</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Ending%20'Touch%20Detective'%20-%20Touch%20Detective%20(128kbit_AAC).m4a">(Ending) Touch Detective</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Bonus%201%20-%20Touch%20Detective%20(128kbit_AAC).m4a">Bonus 1</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Bonus%202%20-%20Touch%20Detective%20(128kbit_AAC).m4a">Bonus 2</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/1/Dream%20Exploration%20-%20Touch%20Detective%20(128kbit_AAC).m4a">Dream Exploration</a></li>
+		</ol>  
+<hr class="border-0">
+[Touch Detective 1 1/2] 
+        <ol id="td2">
+    <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/Opening%20Theme%20'Go!%20Go!%20Mackenzie!'%20-%20Touch%20Detective%202%201%E2%81%842%20(128kbit_AAC).m4a">(Opening Theme) Go! Go! Mackenzie! </a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/Prologue%20'A%20Mother's%20Lullaby'%20-%20Touch%20Detective%202%201%E2%81%842%20(160kbit_Opus).opus">(Prologue) A Mother's Lullaby</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/Office%20'Gumshoe%20Blues'%20-%20Touch%20Detective%202%201%E2%81%842%20(128kbit_AAC).m4a">(Office) Gumshoe Blues</a></li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/Town%20Map%20'March%20of%20the%20Trumpets'%20-%20Touch%20Detective%202%201%E2%81%842%20(128kbit_AAC).m4a"></a>(Town Map) March of the Trumpets</li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/Condominium%20'Beatrice's%20Waltz'%20-%20Touch%20Detective%202%201%E2%81%842%20(128kbit_AAC).m4a"></a>(Condominium) Beatrice's Waltz</li>
+    <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/Forest%20'Heart%20Tree'%20-%20Touch%20Detective%202%201%E2%81%842%20(128kbit_AAC).m4a"></a>(Forest) Heart Tree</li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/Shopping%20Plaza%20'Strolling%20Along'%20-%20Touch%20Detective%202%201%E2%81%842%20(128kbit_AAC).m4a"></a>(Shopping Plaza) Strolling Along</li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/Suspense%20'Intuition'%20-%20Touch%20Detective%202%201%E2%81%842%20(128kbit_AAC).m4a"></a>(Suspense) Intuition</li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/Epilogue%20'Goodbye%2C%20Friend'%20-%20Touch%20Detective%202%201%E2%81%842%20(152kbit_Opus).opus"></a>(Epilogue) Goodbye, Friend</li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/Penelope's%20Theme%20'Dream%20a%20Sweet%20Dream'%20-%20Touch%20Detective%202%201%E2%81%842%20(128kbit_AAC).m4a"></a>(Penelope's Theme) Dream a Sweet Dream</li>
+    <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/Chloe's%20Theme%20'Ranting%20and%20Raving'%20-%20Touch%20Detective%202%201%E2%81%842%20(128kbit_AAC).m4a"></a>(Chloe's Theme) Ranting and Raving</li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/Train%20'Ticket%20to%20Ride'%20-%20Touch%20Detective%202%201%E2%81%842%20(128kbit_AAC).m4a"></a>(Train) Ticket to Ride</li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/Action%20'Dance!%20Detective!'%20-%20Touch%20Detective%202%201%E2%81%842%20(128kbit_AAC).m4a"></a>(Action) Dance! Detective!</li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/Museum%20'Poseidon's%20Crest'%20-%20Touch%20Detective%202%201%E2%81%842%20(128kbit_AAC).m4a"></a>(Museum) Poseidon's Crest</li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/Haunted%20Mansion%20'Seeing%20the%20Unseeable'%20-%20Touch%20Detective%202%201%E2%81%842%20(128kbit_AAC).m4a"></a>(Haunted Mansion) Seeing the Unseeable</li>
+    <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/Dramatic%20'Scenes%20from%20a%20Postcard'%20-%20Touch%20Detective%202%201%E2%81%842%20(152kbit_Opus).opus"></a>(Dramatic) Scenes from a Postcard</li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/UFO%20'I%20Want%20to%20Believe'%20-%20Touch%20Detective%202%201%E2%81%842%20(128kbit_AAC).m4a"></a>(UFO) I Want to Believe</li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/Department%20Store%20'Inside%20the%20Yellow%20Line'%20-%20Touch%20Detective%202%201%E2%81%842%20(128kbit_AAC).m4a"></a>(Department Store) Inside the Yellow Line</li>
+      <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/2/Ending%20'Adieu'%20-%20Touch%20Detective%202%201%E2%81%842%20(128kbit_AAC).m4a"></a>(Ending) Adieu</li>
+      
+        </ol>
+        <hr class="border-0">
+        [Touch Detective Rising 3: Does Funghi Dream Of Bananas?]
+		<ol id="td3">
+      <!--TD 3-->
+			<li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Opening%20Theme%20~%20'Mackenzie%20Take%20Off'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">(Opening Theme) Mackenzie Take Off</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Intermission%20~%20'The%20Rising%20Sun'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">(Intermission) The Rising Sun</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Menu%20~%20'I'm%20a%20Great%20Detective...%C2%BF'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">(Menu) I'm a Great Detective...?</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Office%20~%20'Gumshoe%20Blues%20SH'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">(Office) Gumshoe Blues SH</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Prologue%20~%20'A%20Mother's%20Lullaby'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(152kbit_Opus).opus">(Prologue) A Mother's Lullaby</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Town%20Map%20~%20'March%20of%20the%20Trumpets%202014'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(160kbit_Opus).opus">(Town Map) March of the Trumpets 2014</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Park%20~%20'Everyday'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(160kbit_Opus).opus">(Park) Everyday</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Shopping%20Plaza%20~%20'Strolling%20Along'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(152kbit_Opus).opus">(Shopping Plaza) Strolling Along</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Candy%20Shop%20~%20'Confection%20Shop%20Nostalgia'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(160kbit_Opus).opus">(Candy Shop) Confection Shop Nostalgia</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Funghi%20Matching%20~%20'Funghi%20March!'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(160kbit_Opus).opus">(Fungi Matching) Fungi March!</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Condominium%20~%20'Beatrice's%20Waltz'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(160kbit_Opus).opus">(Condominium) Beatrice's Waltz</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Penelope's%20Theme%20~%20'Dream%20a%20Sweet%20Dream'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">(Penelope's Theme) Dream a Sweet Dream</a></li>			
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Chloe's%20Theme%20~%20'Ranting%20and%20Raving'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(160kbit_Opus).opus">(Chloe's Theme) Ranting and Raving</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Norman%20Touche's%20Theme%20~%20'Love%20Sherlock...'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">(Norman Touche's Theme) Love Sherlock... </a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Daria's%20Theme%20~%20'Leave%20it%20to%20me!'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">(Daria's Theme) Leave it to me!</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Forest%20~%20'Go%20When%C2%BF%20Obviously%2C%20Now!'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(160kbit_Opus).opus">(Forest) Go When? Obviously, Now!</a></li>			
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Factory%20~%20'I'm%20a%20Genius%20Scientist!'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">(Factory) I'm a Genius Scientist!</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Suspense%20~%20'Intuition'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(152kbit_Opus).opus">(Suspense) Intuition</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Action%20~%20'Dance!%20Detective!'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">(Action) Dance! Detective!</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Epilogue%20~%20'Goodbye%2C%20Friend'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(160kbit_Opus).opus">(Epilogue) Goodbye, Friend</a></li>			
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Organ%20Grinder%20~%20'Hey%2C%20Lugol!'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(160kbit_Opus).opus">(Organ Grinder) Hey, Lugol!</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Garbage%20Dump%20~%20'Memories%20of%20the%20Forest'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(160kbit_Opus).opus">(Garbage Dump) Memories of the Forest</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Mansion%20~%20'A%20Splendid%20Gentleman'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">(Mansion) A Splendid Gentleman</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Cram%20School%20~%20'Let's%20Study'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">(Cram School) Let's Study</a></li>			
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Dramatic%20~%20'Scenes%20from%20a%20Postcard'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(152kbit_Opus).opus">(Dramatic) Scenes from a Postcard</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Big%20Tree%20~%20'Star%20Festival%20Dream'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(152kbit_Opus).opus">(Big Tree) Star Festival Dream</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Ending%20~%20'Banana%20of%20Love'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">(Ending) Banana of Love</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/%E3%81%84%E3%81%A4%E8%A1%8C%E3%81%8F%E3%81%AE%EF%BC%9F%E4%BB%8A%E3%81%AA%E3%81%AE%EF%BC%9F(Bonus)%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">(Bonus) いつ行くの？今なの?</a></li>			
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Channel%20Menu%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">Channel Menu</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Funghi%20Lottery%20Jingle%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">Funghi Lottery Jingle</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Funghi%20Matching%20Jingle%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">Funghi Matching Jingle</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Entrance%20Melody%20~%20'Lion's%20Lullaby'%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(160kbit_Opus).opus">(Entrance Melody) Lion's Lullaby</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Case%20Jingle%201%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">Case Jingle 1</a></li>			
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Case%20Jingle%202%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">Case Jingle 2</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Gymnop%C3%A9die%20No.%201%20(Case%20Jingle%203)%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(152kbit_Opus).opus">Gymnopédie No. 1 (Case Jingle 3)</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Case%20Jingle%204%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">Case Jingle 4</a></li>
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Case%20Jingle%205%20-%20Touch%20Detective%20Rising%203%3B%20Does%20Funghi%20Dream%20Of%20Bananas%C2%BF%20(128kbit_AAC).m4a">Case Jingle 5</a></li>			
+            <li><a href="https://file.garden/aDrgmmgBDQ8d6zbz/touch%20detective/3/Haruka%20Fukuhara%20-%20%20Sparkling%20Mystery%20Adventure%20%E3%80%8C%E3%82%AD%E3%83%A9%E3%83%A1%E3%82%AD%E3%83%8A%E3%82%BE%E3%83%A1%E3%82%AD%E3%82%A2%E3%83%89%E3%83%99%E3%83%B3%E3%83%81%E3%83%A3%E3%83%BC%E3%80%8D%20(128kbit_AAC).m4a">Haruka Fukuhara - Sparkling Mystery Adventure</a></li>
+		</ol>  
+	</div>
+</div>
 
-          <div class="col-6 text-center">
-            <img src="/images/JB_btn.png" style="width:220px; transform: rotate(-20deg)">
-          <div><a style="text-decoration: none; color: #ffffff; background-color: #222; padding:10px; font-size: 0.8rem;" href="media.html">← Go Back?</a></div>
-            <hr class="mb-1 mt-4">
-
-            Filter: 
-            <div id="myBtnContainer">
-              <button class="btn active" onclick="filterSelection('all')"> Show all</button>
-              <button class="btn" onclick="filterSelection('1')"> Touch Detective</button>
-              <button class="btn" onclick="filterSelection('2')"> Touch Detective 2 1/2</button>
-              <button class="btn" onclick="filterSelection('3')"> Touch Detective 3</button>
-            </div>
-            <hr class="m-2">
-
-            <div class="tab" style="height:200px; overflow-y: auto;">
-              <button class="tablinks filterDiv 1 2 3" onclick="openCity(event, 'one')">Go! Go! Mackenzie! </button>
-              <button class="tablinks filterDiv 1 2 3" onclick="openCity(event, 'two')">Gumshoe Blues </button>
-              <button class="tablinks dead filterDiv 1" onclick="openCity(event, 'three')">March of the Trumpets</button>
-              <button class="tablinks dead filterDiv 1" onclick="openCity(event, 'four')">Beatrice's Waltz </button>
-              <button class="tablinks dead filterDiv 1" onclick="openCity(event, 'five')">Everyday </button>
-              <button class="tablinks dead filterDiv 1" onclick="openCity(event, 'six')">Strolling Along </button>
-              <button class="tablinks dead filterDiv 1" onclick="openCity(event, 'seven')">Intuition</button>
-              <button class="tablinks dead filterDiv 1" onclick="openCity(event, 'eight')">Goodbye Friend</button>
-              <button class="tablinks dead filterDiv 1" onclick="openCity(event, 'nine')">Dream a Sweet Dream </button>
-              <button class="tablinks dead filterDiv 1" onclick="openCity(event, 'ten')">Ranting and Raving</button>
-              <button class="tablinks dead filterDiv 1" onclick="openCity(event, 'eleven')">Cosmos of Fear</button>
-              <button class="tablinks dead filterDiv 1" onclick="openCity(event, 'twelve')">Dance! Detective! </button>
-              <button class="tablinks dead filterDiv 1" onclick="openCity(event, 'thirteen')">Hey, Lugol!</button>
-              <button class="tablinks dead filterDiv 1" onclick="openCity(event, 'fourteen')">Scenes from a Postcard </button>
-              <button class="tablinks dead filterDiv 1" onclick="openCity(event, 'fifteen')">Under the Big Top</button>
-              <button class="tablinks dead filterDiv 1" onclick="openCity(event, 'sixteen')">Case Closed</button>
-              <button class="tablinks dead filterDiv 1" onclick="openCity(event, 'seventeen')">Touch Detective </button>
-              <button class="tablinks dead filterDiv 1" onclick="openCity(event, 'eighteen')">Dream Exploration</button>
-              <button class="tablinks dead filterDiv 1" onclick="openCity(event, 'nineteen')">Bonus (1)</button>
-              <button class="tablinks dead filterDiv 1" onclick="openCity(event, 'twenty')">Bonus (2)</button>
-                  </div>
-          </div>
-
-          <div class="col text-center">
-            <div id="one" class="tabcontent active">
-                <img src="/album/temp.png" class="cover">
-                <p>Go! Go! Mackenzie</p>
-
-                TD 1
-                <div class="d-flex song mb-2">
-                    <div class="col my-auto"><hr></div>
-                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('op1').play()"><i class="fas fa-forward fa-flip-horizontal" aria-hidden="true"></i> <i class="far fa-circle-play" aria-hidden="true"></i></div>
-                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('op1').pause()"><i class="far fa-circle-pause" aria-hidden="true"></i> <i class="fas fa-forward" aria-hidden="true"></i> </div>
-                    <div class="col my-auto"><hr></div>
-                </div>
-
-                TD 2 1/2
-                <div class="d-flex song mb-2">
-                    <div class="col my-auto"><hr></div>
-                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('op2').play()"><i class="fas fa-forward fa-flip-horizontal" aria-hidden="true"></i> <i class="far fa-circle-play" aria-hidden="true"></i></div>
-                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('op2').pause()"><i class="far fa-circle-pause" aria-hidden="true"></i> <i class="fas fa-forward" aria-hidden="true"></i> </div>
-                    <div class="col my-auto"><hr></div>
-                </div>
-
-                TD 3
-                <div class="d-flex song">
-                    <div class="col my-auto"><hr></div>
-                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('op3').play()"><i class="fas fa-forward fa-flip-horizontal" aria-hidden="true"></i> <i class="far fa-circle-play" aria-hidden="true"></i></div>
-                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('op3').pause()"><i class="far fa-circle-pause" aria-hidden="true"></i> <i class="fas fa-forward" aria-hidden="true"></i> </div>
-                    <div class="col my-auto"><hr></div>
-                </div>
-            </div>
-            <div id="two" class="tabcontent">
-                <img src="/album/temp.png" class="cover">
-                <p>Gumshoe Blues (Office)</p>
-
-                TD 1
-                <div class="d-flex song mb-2">
-                    <div class="col my-auto"><hr></div>
-                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('gb1').play()"><i class="fas fa-forward fa-flip-horizontal" aria-hidden="true"></i> <i class="far fa-circle-play" aria-hidden="true"></i></div>
-                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('gb1').pause()"><i class="far fa-circle-pause" aria-hidden="true"></i> <i class="fas fa-forward" aria-hidden="true"></i> </div>
-                    <div class="col my-auto"><hr></div>
-                </div>
-
-                TD 2 1/2
-                <div class="d-flex song mb-2">
-                    <div class="col my-auto"><hr></div>
-                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('gb2').play()"><i class="fas fa-forward fa-flip-horizontal" aria-hidden="true"></i> <i class="far fa-circle-play" aria-hidden="true"></i></div>
-                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('gb2').pause()"><i class="far fa-circle-pause" aria-hidden="true"></i> <i class="fas fa-forward" aria-hidden="true"></i> </div>
-                    <div class="col my-auto"><hr></div>
-                </div>
-
-                TD 3
-                <div class="d-flex song">
-                    <div class="col my-auto"><hr></div>
-                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('gb3').play()"><i class="fas fa-forward fa-flip-horizontal" aria-hidden="true"></i> <i class="far fa-circle-play" aria-hidden="true"></i></div>
-                    <div class="col-auto my-auto mx-1" onclick="document.getElementById('gb3').pause()"><i class="far fa-circle-pause" aria-hidden="true"></i> <i class="fas fa-forward" aria-hidden="true"></i> </div>
-                    <div class="col my-auto"><hr></div>
-                </div>
-            </div>
-        </div>
-
-        </div>
       </div>
+    
       <!---->
-      <script>
-          function openCity(evt, cityName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-              tabcontent[i].style.display = "none";
+
+<script>
+// HTML5 audio player + playlist controls
+var jsPlayer = document.querySelector('.player-wrap');
+if (jsPlayer) {
+    jsPlayer = {
+        wrap: jsPlayer,
+        player: (jsPlayer.querySelector('audio') || {}),
+        play: jsPlayer.querySelector('.play'),
+        pause: jsPlayer.querySelector('.pause'),
+        seek: jsPlayer.querySelector('.seek'),
+        prev: jsPlayer.querySelector('.prev'),
+        next: jsPlayer.querySelector('.next'),
+        button: jsPlayer.querySelector('.button'),
+        wrapList: document.querySelector('.playlist-wrap'),
+        action: jsPlayer.querySelector('.action'),
+        title: jsPlayer.querySelector('.title'),
+        current: jsPlayer.querySelector('.current'),
+        duration: jsPlayer.querySelector('.duration'),
+        playlist: [],
+        tracks: [],
+        trackCount: 0,
+        playing: false,
+        seeking: null,
+        idx: 0
+    };
+
+
+    jsPlayer.updateAction = function() {
+        jsPlayer.action.textContent = jsPlayer.playing ? "Now Playing…" : "Paused…";
+    };
+
+    jsPlayer.playClicked = function() {
+        jsPlayer.pause.style.display = 'block';
+        jsPlayer.play.style.display = 'none';
+        jsPlayer.playing = true;
+        jsPlayer.updateAction();
+        jsPlayer.player.play();
+        jsPlayer.updateSeek();
+    };
+
+    jsPlayer.pauseClicked = function() {
+        jsPlayer.pause.style.display = 'none';
+        jsPlayer.play.style.display = 'block';
+        jsPlayer.playing = false;
+        jsPlayer.updateAction();
+        jsPlayer.player.pause();
+    };
+
+    jsPlayer.loadPlaylist = function() {
+        jsPlayer.playlist = jsPlayer.wrapList.querySelectorAll('ol > li');
+        jsPlayer.playlist.forEach((li, i) => {
+            let a = li.querySelector('a');
+            if (a) {
+                li.dataset.idx = i;
+                jsPlayer.tracks.push({
+                    file: a.href,
+                    name: a.textContent.trim(),
+                    track: i + 1
+                });
+                jsPlayer.trackCount++;
             }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-              tablinks[i].className = tablinks[i].className.replace(" active", "");
+        });
+    };
+
+    jsPlayer.loadTrack = function(idx) {
+        jsPlayer.playlist.forEach(li => li.classList.remove('sel'));
+        jsPlayer.playlist[idx].classList.add('sel');
+
+        jsPlayer.title.textContent = jsPlayer.tracks[idx].name;
+        jsPlayer.player.src = jsPlayer.tracks[idx].file;
+
+        let img = jsPlayer.button.querySelector("img");
+        if (songImages[idx]) img.src = songImages[idx];
+
+        jsPlayer.updateAction();
+    };
+
+    jsPlayer.playTrack = function(idx) {
+        jsPlayer.loadTrack(idx);
+        jsPlayer.playing = true;
+        jsPlayer.playClicked();
+    };
+
+    jsPlayer.init = function() {
+        jsPlayer.loadPlaylist();
+
+        jsPlayer.player.addEventListener('ended', function() {
+            if (jsPlayer.idx + 1 < jsPlayer.trackCount) {
+                jsPlayer.idx++;
+                jsPlayer.playTrack(jsPlayer.idx);
+            } else {
+                jsPlayer.idx = 0;
+                jsPlayer.playing = false;
+                jsPlayer.loadTrack(0);
+                jsPlayer.player.pause();
+                jsPlayer.updateAction();
             }
-            document.getElementById(cityName).style.display = "block";
-            evt.currentTarget.className += " active";
-          }
-          
-          filterSelection("all")
-function filterSelection(c) {
-  var x, i;
-  x = document.getElementsByClassName("filterDiv");
-  if (c == "all") c = "";
-  for (i = 0; i < x.length; i++) {
-    w3RemoveClass(x[i], "show");
-    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
-  }
-}
+        });
 
-function w3AddClass(element, name) {
-  var i, arr1, arr2;
-  arr1 = element.className.split(" ");
-  arr2 = name.split(" ");
-  for (i = 0; i < arr2.length; i++) {
-    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
-  }
-}
+        jsPlayer.player.addEventListener('loadeddata', function() {
+            jsPlayer.setDuration();
+        });
 
-function w3RemoveClass(element, name) {
-  var i, arr1, arr2;
-  arr1 = element.className.split(" ");
-  arr2 = name.split(" ");
-  for (i = 0; i < arr2.length; i++) {
-    while (arr1.indexOf(arr2[i]) > -1) {
-      arr1.splice(arr1.indexOf(arr2[i]), 1);     
-    }
-  }
-  element.className = arr1.join(" ");
-}
+        jsPlayer.play.addEventListener('click', jsPlayer.playClicked);
+        jsPlayer.pause.addEventListener('click', jsPlayer.pauseClicked);
 
-// Add active class to the current button (highlight it)
-var btnContainer = document.getElementById("myBtnContainer");
-var btns = btnContainer.getElementsByClassName("btn");
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function(){
-    var current = document.getElementsByClassName("active");
-    current[0].className = current[0].className.replace(" active", "");
-    this.className += " active";
-  });
+        jsPlayer.prev.addEventListener('click', function() {
+            if (jsPlayer.idx > 0) jsPlayer.idx--;
+            jsPlayer.loadTrack(jsPlayer.idx);
+            if (jsPlayer.playing) jsPlayer.player.play();
+            jsPlayer.updateAction();
+        });
+
+        jsPlayer.next.addEventListener('click', function() {
+            if (jsPlayer.idx + 1 < jsPlayer.trackCount) jsPlayer.idx++;
+            jsPlayer.loadTrack(jsPlayer.idx);
+            if (jsPlayer.playing) jsPlayer.player.play();
+            jsPlayer.updateAction();
+        });
+
+        jsPlayer.seek.addEventListener('mousedown', function() {
+            clearTimeout(jsPlayer.seeking);
+            jsPlayer.player.pause();
+            jsPlayer.updateAction();
+        });
+
+        jsPlayer.seek.addEventListener('mouseup', function() {
+            jsPlayer.player.currentTime = jsPlayer.seek.value * jsPlayer.player.duration / 100;
+            if (jsPlayer.playing) jsPlayer.player.play();
+            jsPlayer.updateAction();
+        });
+
+        jsPlayer.wrapList.addEventListener('click', function(event) {
+            let li = event.target.closest("li");
+            if (!li) return;
+            jsPlayer.idx = parseInt(li.dataset.idx);
+            jsPlayer.playTrack(jsPlayer.idx);
+            jsPlayer.updateAction();
+        });
+
+        jsPlayer.setDuration = function() {
+            jsPlayer.duration.textContent = jsPlayer.formatTime(jsPlayer.player.duration);
+            jsPlayer.current.textContent = jsPlayer.formatTime(jsPlayer.player.currentTime);
+        };
+
+        jsPlayer.updateSeek = function() {
+            jsPlayer.current.textContent = jsPlayer.formatTime(jsPlayer.player.currentTime);
+            jsPlayer.seek.value = 100 * jsPlayer.player.currentTime / jsPlayer.player.duration;
+            if (jsPlayer.playing) jsPlayer.seeking = setTimeout(jsPlayer.updateSeek, 500);
+        };
+
+        jsPlayer.formatTime = function(v) {
+            v = Math.floor(v);
+            let h = Math.floor(v / 3600);
+            v -= h * 3600;
+            let m = Math.floor(v / 60);
+            let s = v - m * 60;
+            return (h ? h + ":" : "") + (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+        };
+
+        jsPlayer.loadTrack(jsPlayer.idx);
+        jsPlayer.updateAction(); // Always visible on startup
+        jsPlayer.wrap.classList.add('enabled');
+    };
+
+    var songImages = [
+        "/album/temp.png",
+        "/album/temp.png",
+        "/album/temp.png"
+    ];
+
+    jsPlayer.init();
 }
 </script>
+
+
           <!---->
-      
-          <audio id="op1" src="/audios/Opening Theme _Go! Go! Mackenzie!_ - Touch Detective.mp3" preload="auto"></audio>
-          <audio id="op2" src="/audios/Opening Theme _Go! Go! Mackenzie!_ - Touch Detective 2 12.mp3" preload="auto"></audio>
-          <audio id="op3" src="/audios/Opening Theme _Go! Go! Mackenzie!_ - Touch Detective.mp3" preload="auto"></audio>
-      
-          <audio id="gb1" src="/audios/Office _Gumshoe Blues_ - Touch Detective.mp3" preload="auto"></audio>
-          <audio id="gb2" src="/audios/Office _Gumshoe Blues_ - Touch Detective 2 12.mp3" preload="auto"></audio>
-          <audio id="gb3" src="/audios/Office  _Gumshoe Blues_ - Touch Detective 3 Rising_ Do Funghi Dream Of Bananas_.mp3" preload="auto"></audio>
       
 </body>
 </html>
