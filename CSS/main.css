@@ -23,8 +23,11 @@ body {
 }
 
 .book {
+  display: flex;
+  flex-wrap: wrap;
     z-index: 5;
     position: relative;
+    width: auto;
 }
 
 .img-left { 
@@ -41,32 +44,32 @@ padding:10px
 
 
 .left {
-    border-right:1px solid rgb(179, 169, 169);
-    background:#fbf6f6 url('/images/grid.png');
-    padding:20px;
-    padding-right:30px;
-    border-radius: 5px 0px 0px 5px;
+    background: url('/images/left_ntbk.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height:100%;
 }
 
 .right {
-    border-left:1px solid rgb(179, 169, 169);
-    background:#fbf6f6 url('/images/grid.png');
-    padding:20px;
-    padding-left:30px;
-    border-radius: 0px 5px 5px 0px; 
+    background: url('/images/right_ntbk.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width:100%;
 }
 
 .text-box {height:400px; overflow-y: auto;}
 
-li a {background-color: rgba(229, 255, 0, 0.418); text-decoration: none;}
+li a {background-color: rgba(237, 255, 80, 0.418); text-decoration: none;}
 
-
-.hl {background-color: rgba(229, 255, 0, 0.418);}
+.hl {background-color: rgba(237, 255, 80, 0.418); width:fit-content}
 
   .navbars {
     color:#fff;
     margin-bottom:-12px;
-    z-index: -500;
+    margin-left: 45px;
+    z-index: -5;
     font-size: 90%;
     width: fit-content;
   }
@@ -92,16 +95,17 @@ li a {background-color: rgba(229, 255, 0, 0.418); text-decoration: none;}
   }
 
   .spiral {
-    background-image:url('https://f2.toyhou.se/file/f2-toyhou-se/images/38904935_hfXuIWFEPdJTN2h.png?1629709936');
+
+    background-image:url('/images/spine.png');
     background-repeat:repeat-y;
     background-size:contain;
     position:relative;
     top:1%;
-    margin-inline:-15px;
+    margin-block: 5.8vh;
     left:0;
     right:0;
-    width:30px;
-    height:430px;
+    width:55px;
+    height:386px;
   }
 
   .games {
@@ -237,7 +241,7 @@ li a {background-color: rgba(229, 255, 0, 0.418); text-decoration: none;}
       padding:5px;
       padding-left: 25px;
       position: absolute;
-      right: -1rem;
+      right: 3.6rem;
       bottom: 2rem;
       text-decoration: none;
       transition: all ease-in-out 0.3s;
